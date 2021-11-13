@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>CO₂ Einsparung berechnen</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />    
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <link rel="stylesheet" href="styles/cobi-co2-calculator.css">
+</head>
+<body>
+  <div id="header">
+    <h2>CO₂ Einsparung berechnen</h2>
+  </div>
+  <div class="content">
+    <div class="ui">
+      <div class="centered">
+        <div class="setting-box">
+          <div class="centered setting-header">
+            Freizeit oder Auto/ÖPNV-Ersatz?
+          </div>
+          <div class="slidecontainer centered setting-content">
+          F <input type="range" min="0" max="100" value="85" class="slider" id="usageSlider"> A/Ö
+          </div>
+        </div>  
+        <div class="setting-box">
+          <div class="centered setting-header">
+            Auto/ÖPNV-Verhältnis?
+          </div>
+          <div class="slidecontainer centered setting-content">
+          A <input type="range" min="0" max="100" value="25" class="slider" id="ratioSlider"> Ö
+          </div>
+        </div>    
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="centered">
+        <div class="co2-box">
+          <div><span id="tourOutput"></span> kg CO₂</div>
+          <div class="co2-subtitle">Aktuelle Tour</div>
+        </div>
+        <div class="co2-box">
+          <div><span id="totalOutput"></span> kg CO₂</div>
+          <div class="co2-subtitle">Gesamtstrecke</div>
+        </div>
+      </div>
+      <br />
+      <br />
+    </div>
+  </div>
+  
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+  <!-- COBI.JS -->
+  <script src="https://cdn.cobi.bike/cobi.js/0.44.0/cobi.js"></script>
+
+  <!-- cobi-co2-calculator -->
+  <script src="scripts/cobi-co2-calculator.js"></script>
+  
+  <script>
+    // Authenticate the COBI module
+    COBI.init('token');    
+
+    // Init the cobi-co2-calculator
+    var usageSlider = document.getElementById("usageSlider");
+    var ratioSlider = document.getElementById("ratioSlider");
+    var tourOutput = document.getElementById("tourOutput");
+    var totalOutput = document.getElementById("totalOutput");
+    var cobiCo2Calculator = new CobiCo2Calculator(COBI, ratioSlider, usageSlider, tourOutput, totalOutput);
+  </script>  
+</body>
+</html>
