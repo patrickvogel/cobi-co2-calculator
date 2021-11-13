@@ -22,11 +22,11 @@ class CobiCo2Calculator {
           });
         
         this.ratioSlider.oninput = function() {
-            this.updateOutput();
+            this_.updateOutput();
         } 
 
         this.usageSlider.oninput = function() {
-            this.updateOutput();
+            this_.updateOutput();
         }
 
         this.updateOutput();
